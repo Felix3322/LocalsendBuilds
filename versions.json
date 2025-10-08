@@ -4,7 +4,7 @@
     "push_date": "2025-10-05",
     "changelog": "chore: migrate GitHub Actions runners from ubuntu-20 to ubuntu-24 (#2743)",
     "unsigned": "https://localsend.ob-buff.dev/downloads/localsend_app_0.msix",
-    "signed": "null",
+    "signed": null,
     "signed_warning": false
   }
 ]
