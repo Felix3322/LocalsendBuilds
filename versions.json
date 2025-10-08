@@ -5,6 +5,6 @@
     "changelog": "chore: migrate GitHub Actions runners from ubuntu-20 to ubuntu-24 (#2743)",
     "unsigned": "https://localsend.ob-buff.dev/downloads/localsend_app_0.msix",
     "signed": "https://localsend.ob-buff.dev/downloads/localsend-1.8.0-preview-signed.msix",
-    "signed_warning": true
+    "signed_warning": false
   }
 ]
