@@ -1,6 +1,7 @@
 export default {
   async fetch(request, env, ctx) {
-    const html = `<!DOCTYPE html>
+    const html = `
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -24,60 +25,142 @@ export default {
   }
   h1 {
     color: #58a6ff;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
-  h2 {
-    margin-top: 2em;
-    color: #79c0ff;
+  .version {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 1em 1.5em;
+    margin: 1em 0;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .version h2 {
+    color: #d2a8ff;
+    margin-bottom: 0.3em;
+    word-break: break-all;
+  }
+  a {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .note {
+    background: linear-gradient(180deg,#1b1f26 0%, #20262f 100%);
+    border-left: 4px solid #58a6ff;
+    padding: 1em;
+    margin-top: 1.5em;
+    border-radius: 8px;
+    color: #c1c8d1;
+    max-width: 715px;
+    line-height: 1.5;
+  }
+  .downloads {
+    margin-top: 1em;
   }
   .download-btn {
     display: inline-block;
     background: #238636;
     color: white;
-    padding: 14px 28px;
-    margin: 0.6em 0;
-    border-radius: 12px;
-    font-size: 1.2em;
-    text-decoration: none;
+    padding: 0.7em 1.4em;
+    border-radius: 8px;
     font-weight: 600;
-    box-shadow: 0 0 10px #23863655;
-    transition: all 0.2s ease;
+    font-size: 1.05em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .download-btn:hover {
-    background: #2ea043;
     transform: scale(1.05);
-    box-shadow: 0 0 20px #2ea04388;
+    box-shadow: 0 4px 12px rgba(35,134,54,0.5);
+  }
+  .warning {
+    color: #ffae57;
+    font-size: 0.9em;
+    margin-top: 0.4em;
+    background: rgba(255, 174, 87, 0.1);
+    padding: 0.5em 0.8em;
+    border-radius: 6px;
+  }
+  code {
+    background: #1c2128;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    color: #c9d1d9;
   }
   footer {
-    margin-top: 4em;
-    font-size: 0.9em;
-    color: #8b949e;
+    margin-top: 3em;
+    font-size: 0.85em;
+    color: #7d8590;
   }
 </style>
 </head>
 <body>
-  <h1>LocalSend Preview Builds</h1>
+  <h1>LocalSend - Unofficial Builds</h1>
+  
+  <div class="note">
+    💡 <strong>Tip:</strong><br>
+    Linux users can easily build LocalSend from source, so only Windows and Android builds are provided here.<br><br>
 
-  <!-- 🧱 已签名板块暂时注释掉
-  <h2>Signed Builds</h2>
-  <ul>
-    <li><a href="https://cdn.ob-buff.dev/LocalSend_x64_signed.msix">Windows (MSIX, Signed)</a></li>
-  </ul>
-  -->
+    🪟 <strong>Windows:</strong> the <strong>MSIX package requires Developer Mode</strong> to be enabled before installation.<br>
+    I don’t have a paid signing certificate (it’s surprisingly expensive 😅) — if anyone can help with signing, I’d be super grateful ❤️
+  </div>
 
-  <h2>Unsigned Builds</h2>
-  <a class="download-btn" href="https://cdn.ob-buff.dev/LocalSend_x64_unsigned.msix">
-    ⬇️ Download Windows (Unsigned MSIX)
-  </a>
+  <div class="note">
+    🧭 <strong>How to enable Developer Mode:</strong><br>
+    1️⃣ Press <code>Win + I</code> to open <em>Settings</em>.<br>
+    2️⃣ Go to <strong>System → For Developers</strong>.<br>
+    3️⃣ Turn on <strong>Developer Mode</strong> and confirm when prompted.<br><br>
 
-  <a class="download-btn" href="https://cdn.ob-buff.dev/LocalSend_Android_arm64.apk">
-    📱 Download Android (ARM64 APK)
-  </a>
+    ⚙️ <strong>Installing unsigned MSIX via PowerShell:</strong><br>
+    1️⃣ Right-click the <code>.msix</code> file → choose <em>Copy as path</em>.<br>
+    2️⃣ Open <strong>PowerShell</strong> (Run as Administrator).<br>
+    3️⃣ Run this command:<br>
+    <code>Add-AppxPackage "C:\\path\\to\\localsend_app_0.msix"</code><br><br>
 
-  <footer>Maintained by OB_BUFF • Unofficial build preview</footer>
+    💡 If you get a policy restriction error, make sure Developer Mode is enabled and PowerShell is running as admin.
+  </div>
+
+  <div class="version">
+    <h2>
+      <a href="https://github.com/localsend/localsend/commit/86adfd67afef5fd79b8f4cedc395ffa886c4e939" target="_blank" rel="noopener noreferrer">
+        git-86adfd67afef5fd79b8f4cedc395ffa886c4e939-preview
+      </a>
+    </h2>
+
+    <p class="push-date">📅 Push date: <time datetime="2025-10-05">2025-10-05</time></p>
+
+    <p class="changelog">
+      🧰
+      <a href="https://github.blog/changelog/2025-01-15-github-actions-ubuntu-20-runner-image-brownout-dates-and-other-breaking-changes/#ubuntu-20-image-is-closing-down" target="_blank" rel="noopener noreferrer">
+        chore: migrate GitHub Actions runners from ubuntu-20 to ubuntu-24 (#2743)
+      </a>
+    </p>
+
+    <div class="downloads">
+      <a class="download-btn" href="https://ob-buff.dev/downloads/localsend_app_0.msix" target="_blank" rel="noopener noreferrer">⬇️ Download MSIX (Unsigned)</a>
+    </div>
+
+    <!--
+    <div class="downloads downloads-signed" style="margin-top:0.6em;">
+       <a class="download-btn" style="background:#ffae57;" href="https://ob-buff.dev/downloads/localsend-1.8.0-preview-signed.msix" target="_blank" rel="noopener noreferrer">🔏 Download MSIX (Signed)</a> 
+    </div>
+
+    <div class="warning">
+      ⚠️ This file is <strong>signed using a leaked private key</strong> — some antivirus or SmartScreen may flag it as unsafe.<br>
+      Install only if you trust the source, and verify the file hash if possible.
+    </div>
+    -->
+  </div>
+
+  <footer>
+    Built by <a href="https://ob-buff.dev" target="_blank" rel="noopener noreferrer">OB_BUFF</a> — unofficial community builds.
+  </footer>
 </body>
-</html>
-`;
+</html>`;
     return new Response(html, {
       headers: { "content-type": "text/html; charset=UTF-8" },
     });
