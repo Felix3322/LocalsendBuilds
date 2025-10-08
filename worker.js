@@ -141,7 +141,7 @@ export default {
     </p>
 
     <div class="downloads">
-      <a class="download-btn" href="https://ob-buff.dev/downloads/localsend_app_0.msix" target="_blank" rel="noopener noreferrer">⬇️ Download MSIX (Unsigned)</a>
+      <a class="download-btn" href="/downloads/localsend_app_0.msix" target="_blank" rel="noopener noreferrer">⬇️ Download MSIX (Unsigned)</a>
     </div>
 
     <!--
