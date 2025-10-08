@@ -10,119 +10,123 @@
 <meta property="og:site_name" content="OB_BUFF.dev" />
 <meta name="theme-color" content="#0d1117" />
 <style>
-  body {
-    font-family: system-ui, sans-serif;
-    background: #0d1117;
-    color: #e6edf3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 3em 1em;
-  }
-  h1 {
-    color: #58a6ff;
-    margin-bottom: 0.5em;
-  }
-  .version {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 1em 1.5em;
-    margin: 1em 0;
-    width: 90%;
-    max-width: 700px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-  }
-  .version h2 {
-    color: #d2a8ff;
-    margin-bottom: 0.3em;
-    word-break: break-all;
-  }
-  a {
-    color: #58a6ff;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  .note {
-    background: linear-gradient(180deg,#1b1f26 0%, #20262f 100%);
-    border-left: 4px solid #58a6ff;
-    padding: 1em;
-    margin-top: 1.5em;
-    border-radius: 8px;
-    color: #c1c8d1;
-    max-width: 715px;
-    line-height: 1.5;
-  }
-  .downloads a {
-    margin-right: 0.5em;
-  }
-  .download-btn {
-    display: inline-block;
-    background: #238636;
-    color: white;
-    padding: 0.7em 1.4em;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.05em;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .download-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(35,134,54,0.5);
-  }
-  .warning {
-    color: #ffae57;
-    font-size: 0.9em;
-    margin-top: 0.4em;
-    background: rgba(255, 174, 87, 0.1);
-    padding: 0.5em 0.8em;
-    border-radius: 6px;
-  }
-  code {
-    background: #1c2128;
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
-    color: #c9d1d9;
-  }
-  footer {
-    margin-top: 3em;
-    font-size: 0.85em;
-    color: #7d8590;
-  }
+:root {
+  --bg: #0d1117;
+  --panel: #161b22;
+  --accent: #58a6ff;
+  --accent2: #d2a8ff;
+  --text: #e6edf3;
+  --muted: #7d8590;
+  --border: #30363d;
+  --warn: #ffae57;
+  --green: #238636;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, var(--bg) 0%, #0f141c 100%);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3em 1em 6em;
+  line-height: 1.6;
+}
+
+h1 {
+  color: var(--accent);
+  margin-bottom: 0.3em;
+  font-size: 2.1em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.note, .version {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.3em 1.5em;
+  margin: 1.2em 0;
+  width: 90%;
+  max-width: 720px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  animation: fadein 0.3s ease;
+}
+
+.version h2 {
+  color: var(--accent2);
+  margin-bottom: 0.4em;
+  word-break: break-all;
+  font-size: 1em;
+}
+
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  margin-top: 0.8em;
+}
+
+.download-btn {
+  flex: 1 1 200px;
+  text-align: center;
+  background: var(--green);
+  color: white;
+  padding: 0.7em 1.2em;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(35,134,54,0.45);
+}
+
+.warning {
+  color: var(--warn);
+  font-size: 0.9em;
+  margin-top: 0.8em;
+  background: rgba(255,174,87,0.08);
+  padding: 0.6em 0.9em;
+  border-radius: 6px;
+  border: 1px solid rgba(255,174,87,0.2);
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 <body>
-  <h1>LocalSend - Unofficial Builds</h1>
+  <h1>LocalSend — Unofficial Builds</h1>
 
   <div class="note">
     💡 <strong>Tip:</strong><br>
-    Linux users can easily build LocalSend from source, so only Windows and Android builds are provided here.<br><br>
-
-    🪟 <strong>Windows:</strong> the <strong>MSIX package requires Developer Mode</strong> to be enabled before installation.<br>
-    I don’t have a paid signing certificate (it’s surprisingly expensive 😅) — if anyone can help with signing, I’d be super grateful ❤️<br><br>
-
-    ⚠️ <strong>Signed:</strong> the signed MSIX uses a leaked private key.
-    Some antivirus or SmartScreen filters may flag it as unsafe.
-    Please only install if you trust the source and verify the file hash before running.
+    Linux users can build LocalSend from source, so only Windows and Android builds are hosted here.<br><br>
+    🪟 <strong>Windows:</strong> the <strong>MSIX package requires Developer Mode</strong> before installation.<br>
+    I don’t have a paid signing certificate (they’re expensive 😅). If anyone can help with signing, I’d be super grateful ❤️<br><br>
+    ⚠️ <strong>Signed:</strong> The “signed” MSIX uses a leaked private key.
+    Antivirus or SmartScreen filters may flag it. Install only if you trust the source and verify hashes.
   </div>
 
   <div class="note">
-    🧭 <strong>How to enable Developer Mode:</strong><br>
-    1️⃣ Press <code>Win + I</code> to open <em>Settings</em>.<br>
-    2️⃣ Go to <strong>System → For Developers</strong>.<br>
-    3️⃣ Turn on <strong>Developer Mode</strong> and confirm when prompted.<br><br>
+    🧭 <strong>Enable Developer Mode:</strong><br>
+    1️⃣ <code>Win + I</code> → <em>Settings</em><br>
+    2️⃣ Go to <strong>System → For Developers</strong><br>
+    3️⃣ Turn on <strong>Developer Mode</strong> and confirm.<br><br>
 
-    ⚙️ <strong>Installing unsigned MSIX via PowerShell:</strong><br>
-    1️⃣ Right-click the <code>.msix</code> file → choose <em>Copy as path</em>.<br>
-    2️⃣ Open <strong>PowerShell</strong> (Run as Administrator).<br>
-    3️⃣ Run this command:<br>
+    ⚙️ <strong>Install unsigned MSIX via PowerShell:</strong><br>
+    1️⃣ Right-click the file → <em>Copy as path</em><br>
+    2️⃣ Run <strong>PowerShell (Admin)</strong><br>
+    3️⃣ Run:<br>
     <code>Add-AppxPackage "C:\\path\\to\\localsend_app_0.msix"</code><br><br>
-
-    💡 If you get a policy restriction error, make sure Developer Mode is enabled and PowerShell is running as admin.
+    💡 If you get policy errors, ensure Developer Mode is on and PowerShell runs as admin.
   </div>
 
   <div id="build-list">Loading version data...</div>
@@ -134,13 +138,11 @@
 <script>
 async function loadVersions() {
   try {
-    // 动态计算正确路径
     const base = location.origin + location.pathname.replace(/\/[^/]*$/, "/");
     const res = await fetch(base + "versions.json", { cache: "no-store" });
     if (!res.ok) throw new Error(res.status);
     const versions = await res.json();
-    const html = versions.map(renderVersionBlock).join("");
-    document.getElementById("build-list").innerHTML = html;
+    document.getElementById("build-list").innerHTML = versions.map(renderVersionBlock).join("");
   } catch (e) {
     document.getElementById("build-list").innerHTML =
       "<div class='warning'>⚠️ Failed to load versions.json (" + e + ")</div>";
@@ -156,23 +158,26 @@ function renderVersionBlock(v) {
       </a>
     </h2>
 
-    <p class="push-date">📅 Push date: <time datetime="${v.push_date}">${v.push_date}</time></p>
-
-    <p class="changelog">
-      🧰 ${v.changelog}
-    </p>
+    <p>📅 <strong>Push date:</strong> <time datetime="${v.push_date}">${v.push_date}</time></p>
+    <p>🧰 ${v.changelog}</p>
 
     <div class="downloads">
-      ${v.unsigned ? `<a class="download-btn" href="${v.unsigned}" target="_blank" rel="noopener noreferrer">🪟 MSIX (Unsigned)</a>` : `<span style="color:#7d8590;">No unsigned build</span>`}
+      ${v.unsigned
+        ? `<a class="download-btn" href="${v.unsigned}" target="_blank">🪟 MSIX (Unsigned)</a>`
+        : `<span style="color:#7d8590;">No unsigned build</span>`}
     </div>
 
-    <div class="downloads downloads-signed" style="margin-top:0.6em;">
-      ${v.signed ? `<a class="download-btn" style="background:#ffae57;" href="${v.signed}" target="_blank" rel="noopener noreferrer">🔏 MSIX (Signed)</a>` : `<span style="color:#7d8590;">No signed build</span>`}
+    <div class="downloads" style="margin-top:0.6em;">
+      ${v.signed
+        ? `<a class="download-btn" style="background:var(--warn);color:#222;" href="${v.signed}" target="_blank">🔏 MSIX (Signed)</a>`
+        : `<span style="color:#7d8590;">No signed build</span>`}
     </div>
 
     <div class="warning">
-      ⚠️ This file is ${v.signed_warning ? "<strong>signed using a leaked private key</strong>" : "unsigned or unverified"} — some antivirus or SmartScreen may flag it as unsafe.<br>
-      Install only if you trust the source, and verify the file hash if possible.
+      ⚠️ ${v.signed_warning
+        ? "<strong>Signed using a leaked private key</strong>"
+        : "Unsigned or unverified"} — may trigger SmartScreen warnings.<br>
+      Install only if you trust the source and verify hashes.
     </div>
   </div>`;
 }
