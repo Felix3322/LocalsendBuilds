@@ -1,5 +1,39 @@
 export default {
   async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    const path = url.pathname;
+
+    // -----------------------------
+    // (1) 文件分发逻辑
+    // -----------------------------
+    if (path.startsWith("/downloads/")) {
+      const fileName = path.substring("/downloads/".length);
+      try {
+        const object = await env.DOWNLOADS_BUCKET?.get(fileName);
+        if (!object) return new Response("404 File Not Found", { status: 404 });
+        const headers = new Headers();
+        headers.set("Content-Type", guessMime(fileName));
+        headers.set("Cache-Control", "public, max-age=3600");
+        return new Response(object.body, { headers });
+      } catch {
+        return new Response("Error loading file.", { status: 500 });
+      }
+    }
+
+    // -----------------------------
+    // (2) 从 versions.json 读取版本信息
+    // -----------------------------
+    let data;
+    try {
+      const res = await fetch(`${url.origin}/versions.json`);
+      data = await res.json();
+    } catch (e) {
+      return new Response("Failed to load version data.", { status: 500 });
+    }
+
+    // -----------------------------
+    // (3) 渲染原界面样式
+    // -----------------------------
     const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +93,8 @@ export default {
     max-width: 715px;
     line-height: 1.5;
   }
-  .downloads {
-    margin-top: 1em;
+  .downloads a {
+    margin-right: 0.5em;
   }
   .download-btn {
     display: inline-block;
@@ -104,7 +138,6 @@ export default {
   <div class="note">
     💡 <strong>Tip:</strong><br>
     Linux users can easily build LocalSend from source, so only Windows and Android builds are provided here.<br><br>
-
     🪟 <strong>Windows:</strong> the <strong>MSIX package requires Developer Mode</strong> to be enabled before installation.<br>
     I don’t have a paid signing certificate (it’s surprisingly expensive 😅) — if anyone can help with signing, I’d be super grateful ❤️
   </div>
@@ -114,45 +147,25 @@ export default {
     1️⃣ Press <code>Win + I</code> to open <em>Settings</em>.<br>
     2️⃣ Go to <strong>System → For Developers</strong>.<br>
     3️⃣ Turn on <strong>Developer Mode</strong> and confirm when prompted.<br><br>
-
     ⚙️ <strong>Installing unsigned MSIX via PowerShell:</strong><br>
-    1️⃣ Right-click the <code>.msix</code> file → choose <em>Copy as path</em>.<br>
-    2️⃣ Open <strong>PowerShell</strong> (Run as Administrator).<br>
-    3️⃣ Run this command:<br>
-    <code>Add-AppxPackage "C:\\path\\to\\localsend_app_0.msix"</code><br><br>
-
-    💡 If you get a policy restriction error, make sure Developer Mode is enabled and PowerShell is running as admin.
+    <code>Add-AppxPackage "C:\\path\\to\\localsend_app_0.msix"</code>
   </div>
 
   <div class="version">
-    <h2>
-      <a href="https://github.com/localsend/localsend/commit/86adfd67afef5fd79b8f4cedc395ffa886c4e939" target="_blank" rel="noopener noreferrer">
-        git-86adfd67afef5fd79b8f4cedc395ffa886c4e939-preview
-      </a>
-    </h2>
-
-    <p class="push-date">📅 Push date: <time datetime="2025-10-05">2025-10-05</time></p>
-
-    <p class="changelog">
-      🧰
-      <a href="https://github.blog/changelog/2025-01-15-github-actions-ubuntu-20-runner-image-brownout-dates-and-other-breaking-changes/#ubuntu-20-image-is-closing-down" target="_blank" rel="noopener noreferrer">
-        chore: migrate GitHub Actions runners from ubuntu-20 to ubuntu-24 (#2743)
-      </a>
-    </p>
+    <h2><a href="https://github.com/localsend/localsend/commit/${data.commit}" target="_blank">${data.commit}</a></h2>
+    <p>📅 Push date: <time>${data.push_date}</time></p>
+    <p>🧰 ${data.changelog}</p>
 
     <div class="downloads">
-      <a class="download-btn" href="/downloads/localsend_app_0.msix" target="_blank" rel="noopener noreferrer">⬇️ Download MSIX (Unsigned)</a>
+      <a class="download-btn" href="${data.unsigned}" target="_blank" rel="noopener noreferrer">⬇️ Download MSIX (Unsigned)</a>
     </div>
 
+    <!-- 已签名部分已注释掉 -->
     <!--
     <div class="downloads downloads-signed" style="margin-top:0.6em;">
-       <a class="download-btn" style="background:#ffae57;" href="https://ob-buff.dev/downloads/localsend-1.8.0-preview-signed.msix" target="_blank" rel="noopener noreferrer">🔏 Download MSIX (Signed)</a> 
+       <a class="download-btn" style="background:#ffae57;" href="${data.signed}" target="_blank" rel="noopener noreferrer">🔏 MSIX (Signed)</a> 
     </div>
-
-    <div class="warning">
-      ⚠️ This file is <strong>signed using a leaked private key</strong> — some antivirus or SmartScreen may flag it as unsafe.<br>
-      Install only if you trust the source, and verify the file hash if possible.
-    </div>
+    ${data.signed_warning ? `<div class="warning">⚠️ Signed with leaked key.</div>` : ""}
     -->
   </div>
 
@@ -161,8 +174,17 @@ export default {
   </footer>
 </body>
 </html>`;
+
     return new Response(html, {
       headers: { "content-type": "text/html; charset=UTF-8" },
     });
   },
 };
+
+// 辅助函数：猜 MIME
+function guessMime(file) {
+  if (file.endsWith(".msix")) return "application/msix";
+  if (file.endsWith(".apk")) return "application/vnd.android.package-archive";
+  if (file.endsWith(".zip")) return "application/zip";
+  return "application/octet-stream";
+}
