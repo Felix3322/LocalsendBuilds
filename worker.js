@@ -112,13 +112,11 @@ export default {
     </p>
 
     <div class="downloads">
-      <a href="https://ob-buff.dev/downloads/localsend-1.8.0-preview.msix" target="_blank" rel="noopener noreferrer">🪟 MSIX</a> ·
-      <a href="https://ob-buff.dev/downloads/localsend-1.8.0-preview.exe" target="_blank" rel="noopener noreferrer">💻 EXE</a> ·
-      <a href="https://ob-buff.dev/downloads/localsend-1.8.0-preview-arm64.apk" target="_blank" rel="noopener noreferrer">📱 ARM64 APK</a>
+      <a href="https://ob-buff.dev/downloads/localsend_app_0.msix" target="_blank" rel="noopener noreferrer">🪟 MSIX</a> ·
     </div>
 
     <div class="downloads downloads-signed" style="margin-top:0.6em;">
-      <a href="https://ob-buff.dev/downloads/localsend-1.8.0-preview-signed.msix" target="_blank" rel="noopener noreferrer">🔏 MSIX (Signed)</a>
+<!--      <a href="https://ob-buff.dev/downloads/localsend-1.8.0-preview-signed.msix" target="_blank" rel="noopener noreferrer">🔏 MSIX (Signed)</a>-->
     </div>
 
     <div class="warning">
