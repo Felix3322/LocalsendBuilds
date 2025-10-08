@@ -73,6 +73,12 @@ export default {
     padding: 0.5em 0.8em;
     border-radius: 6px;
   }
+  code {
+    background: #1c2128;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    color: #c9d1d9;
+  }
   footer {
     margin-top: 3em;
     font-size: 0.85em;
@@ -93,6 +99,21 @@ export default {
     ⚠️ <strong>Signed:</strong> the signed MSIX uses a leaked private key.  
     Some antivirus or SmartScreen filters may flag it as unsafe.  
     Please only install if you trust the source and verify the file hash before running.
+  </div>
+
+  <div class="note">
+    🧭 <strong>How to enable Developer Mode:</strong><br>
+    1️⃣ Press <code>Win + I</code> to open <em>Settings</em>.<br>
+    2️⃣ Go to <strong>System → For Developers</strong>.<br>
+    3️⃣ Turn on <strong>Developer Mode</strong> and confirm when prompted.<br><br>
+
+    ⚙️ <strong>Installing unsigned MSIX via PowerShell:</strong><br>
+    1️⃣ Right-click the <code>.msix</code> file → choose <em>Copy as path</em>.<br>
+    2️⃣ Open <strong>PowerShell</strong> (Run as Administrator).<br>
+    3️⃣ Run this command:<br>
+    <code>Add-AppxPackage "C:\\path\\to\\localsend_app_0.msix"</code><br><br>
+
+    💡 If you get a policy restriction error, make sure Developer Mode is enabled and PowerShell is running as admin.
   </div>
 
   <div class="version">
@@ -116,7 +137,7 @@ export default {
     </div>
 
     <div class="downloads downloads-signed" style="margin-top:0.6em;">
-<!--      <a href="https://ob-buff.dev/downloads/localsend-1.8.0-preview-signed.msix" target="_blank" rel="noopener noreferrer">🔏 MSIX (Signed)</a>-->
+      <!-- <a href="https://ob-buff.dev/downloads/localsend-1.8.0-preview-signed.msix" target="_blank" rel="noopener noreferrer">🔏 MSIX (Signed)</a> -->
     </div>
 
     <div class="warning">
@@ -130,7 +151,6 @@ export default {
   </footer>
 </body>
 </html>`;
-
     return new Response(html, {
       headers: { "content-type": "text/html; charset=UTF-8" },
     });
