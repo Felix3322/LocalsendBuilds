@@ -31,33 +31,55 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3em 1em 6em;
-  line-height: 1.6;
+  padding: 2.5em 2em 4em;
+  line-height: 1.55;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 h1 {
   color: var(--accent);
-  margin-bottom: 0.3em;
-  font-size: 2.1em;
+  margin-bottom: 0.8em;
+  font-size: 2.2em;
   text-align: center;
   font-weight: 700;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  gap: 1.5em;
+  width: 100%;
+  max-width: 1600px;
 }
 
 .note, .version {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 1.3em 1.5em;
-  margin: 1.2em 0;
-  width: 90%;
-  max-width: 720px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 1.2em 1.5em;
+  margin: 0.8em 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   animation: fadein 0.3s ease;
+}
+
+.note {
+  border-left: 4px solid var(--accent);
+  background: linear-gradient(180deg, #1a1f27 0%, #20262f 100%);
+  color: #c9d1d9;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.version {
+  width: 100%;
+  max-width: 1600px;
+  padding: 1em 1.3em;
 }
 
 .version h2 {
   color: var(--accent2);
-  margin-bottom: 0.4em;
+  margin-bottom: 0.3em;
   word-break: break-all;
   font-size: 1em;
 }
@@ -65,12 +87,12 @@ h1 {
 .downloads {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6em;
+  gap: 0.7em;
   margin-top: 0.8em;
 }
 
 .download-btn {
-  flex: 1 1 200px;
+  flex: 1 1 240px;
   text-align: center;
   background: var(--green);
   color: white;
@@ -90,11 +112,19 @@ h1 {
 .warning {
   color: var(--warn);
   font-size: 0.9em;
-  margin-top: 0.8em;
+  margin-top: 0.6em;
   background: rgba(255,174,87,0.08);
   padding: 0.6em 0.9em;
   border-radius: 6px;
   border: 1px solid rgba(255,174,87,0.2);
+}
+
+footer {
+  margin-top: 2em;
+  font-size: 0.9em;
+  color: var(--muted);
+  text-align: center;
+  width: 100%;
 }
 
 @keyframes fadein {
@@ -103,33 +133,36 @@ h1 {
 }
 </style>
 </head>
+
 <body>
   <h1>LocalSend — Unofficial Builds</h1>
 
-  <div class="note">
-    💡 <strong>Tip:</strong><br>
-    Linux users can build LocalSend from source, so only Windows and Android builds are hosted here.<br><br>
-    🪟 <strong>Windows:</strong> the <strong>MSIX package requires Developer Mode</strong> before installation.<br>
-    I don’t have a paid signing certificate (they’re expensive 😅). If anyone can help with signing, I’d be super grateful ❤️<br><br>
-    ⚠️ <strong>Signed:</strong> The “signed” MSIX uses a leaked private key.
-    Antivirus or SmartScreen filters may flag it. Install only if you trust the source and verify hashes.
+  <div class="notes-grid">
+    <div class="note">
+      💡 <strong>Tip:</strong><br>
+      Linux users can build LocalSend from source, so only Windows and Android builds are hosted here.<br><br>
+      🪟 <strong>Windows:</strong> the <strong>MSIX package requires Developer Mode</strong> before installation.<br>
+      I don’t have a paid signing certificate (they’re expensive 😅). If anyone can help with signing, I’d be super grateful ❤️<br><br>
+      ⚠️ <strong>Signed:</strong> The “signed” MSIX uses a leaked private key.
+      Antivirus or SmartScreen filters may flag it. Install only if you trust the source and verify hashes.
+    </div>
+
+    <div class="note">
+      🧭 <strong>Enable Developer Mode:</strong><br>
+      1️⃣ <code>Win + I</code> → <em>Settings</em><br>
+      2️⃣ Go to <strong>System → For Developers</strong><br>
+      3️⃣ Turn on <strong>Developer Mode</strong> and confirm.<br><br>
+
+      ⚙️ <strong>Install unsigned MSIX via PowerShell:</strong><br>
+      1️⃣ Right-click the file → <em>Copy as path</em><br>
+      2️⃣ Run <strong>PowerShell (Admin)</strong><br>
+      3️⃣ Run:<br>
+      <code>Add-AppxPackage "C:\\path\\to\\localsend_app_0.msix"</code><br><br>
+      💡 If you get policy errors, ensure Developer Mode is on and PowerShell runs as admin.
+    </div>
   </div>
 
-  <div class="note">
-    🧭 <strong>Enable Developer Mode:</strong><br>
-    1️⃣ <code>Win + I</code> → <em>Settings</em><br>
-    2️⃣ Go to <strong>System → For Developers</strong><br>
-    3️⃣ Turn on <strong>Developer Mode</strong> and confirm.<br><br>
-
-    ⚙️ <strong>Install unsigned MSIX via PowerShell:</strong><br>
-    1️⃣ Right-click the file → <em>Copy as path</em><br>
-    2️⃣ Run <strong>PowerShell (Admin)</strong><br>
-    3️⃣ Run:<br>
-    <code>Add-AppxPackage "C:\\path\\to\\localsend_app_0.msix"</code><br><br>
-    💡 If you get policy errors, ensure Developer Mode is on and PowerShell runs as admin.
-  </div>
-
-  <div id="build-list">Loading version data...</div>
+  <div id="build-list" style="width:100%;max-width:1600px;">Loading version data...</div>
 
   <footer>
     Built by <a href="https://ob-buff.dev" target="_blank" rel="noopener noreferrer">OB_BUFF</a> — unofficial community builds.
@@ -157,7 +190,6 @@ function renderVersionBlock(v) {
         ${v.commit}
       </a>
     </h2>
-
     <p>📅 <strong>Push date:</strong> <time datetime="${v.push_date}">${v.push_date}</time></p>
     <p>🧰 ${v.changelog}</p>
 
@@ -165,9 +197,6 @@ function renderVersionBlock(v) {
       ${v.unsigned
         ? `<a class="download-btn" href="${v.unsigned}" target="_blank">🪟 MSIX (Unsigned)</a>`
         : `<span style="color:#7d8590;">No unsigned build</span>`}
-    </div>
-
-    <div class="downloads" style="margin-top:0.6em;">
       ${v.signed
         ? `<a class="download-btn" style="background:var(--warn);color:#222;" href="${v.signed}" target="_blank">🔏 MSIX (Signed)</a>`
         : `<span style="color:#7d8590;">No signed build</span>`}
