@@ -134,12 +134,16 @@
 <script>
 async function loadVersions() {
   try {
-    const res = await fetch("versions.json");
+    // 动态计算正确路径
+    const base = location.origin + location.pathname.replace(/\/[^/]*$/, "/");
+    const res = await fetch(base + "versions.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(res.status);
     const versions = await res.json();
     const html = versions.map(renderVersionBlock).join("");
     document.getElementById("build-list").innerHTML = html;
   } catch (e) {
-    document.getElementById("build-list").innerHTML = "<div class='warning'>⚠️ Failed to load versions.json</div>";
+    document.getElementById("build-list").innerHTML =
+      "<div class='warning'>⚠️ Failed to load versions.json (" + e + ")</div>";
   }
 }
 
