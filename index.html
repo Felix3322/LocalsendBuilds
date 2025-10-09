@@ -289,7 +289,7 @@ footer:hover { opacity: 1; }
       <li>Right-click the downloaded <code>.msix</code> file → choose <strong>Copy as path</strong>.</li>
       <li>Press <kbd>Win</kbd> + <kbd>X</kbd> → open <strong>Windows PowerShell (Admin)</strong>.</li>
       <li>In the PowerShell window, paste and run:
-        <pre><code>Add-AppxPackage "C:\path\to\localsend_app_0.msix"</code></pre>
+        <pre><code>Add-AppxPackage -Path "C:\Users\***\Downloads\localsend_app_0.msix" -AllowUnsigned</code></pre>
       </li>
       <li>If you see a policy error, enable sideloading in
         <code>Settings → Privacy & Security → For Developers → Sideload apps</code>.
