@@ -282,15 +282,19 @@ footer:hover { opacity: 1; }
   </div>
 </section>
 
-<section class="section install-guide">
+<section class="section powershell-install">
   <div class="note">
-    <h2>📦 Installation Guide</h2>
+    <h2>⚙️ Install Unsigned Package via PowerShell</h2>
     <ul class="install-step">
-      <li><strong>Download</strong> the <code>.msix</code> package (signed or unsigned) from below.</li>
-      <li>If Windows shows a <em>SmartScreen</em> warning, click “More info” → “Run anyway”.</li>
-      <li>If installation fails, enable <strong>Sideload apps</strong> in <code>Settings → Privacy & Security → For Developers</code>.</li>
-      <li>To verify authenticity, compare SHA256 hash from <code>versions.json</code> or release notes.</li>
-      <li>After install, search for <strong>LocalSend</strong> in Start Menu and run it normally.</li>
+      <li>Right-click the downloaded <code>.msix</code> file → choose <strong>Copy as path</strong>.</li>
+      <li>Press <kbd>Win</kbd> + <kbd>X</kbd> → open <strong>Windows PowerShell (Admin)</strong>.</li>
+      <li>In the PowerShell window, paste and run:
+        <pre><code>Add-AppxPackage "C:\path\to\localsend_app_0.msix"</code></pre>
+      </li>
+      <li>If you see a policy error, enable sideloading in
+        <code>Settings → Privacy & Security → For Developers → Sideload apps</code>.
+      </li>
+      <li>Once installed, search for <strong>LocalSend</strong> in Start Menu and launch it normally.</li>
     </ul>
   </div>
 </section>
