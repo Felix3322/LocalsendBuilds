@@ -3,6 +3,9 @@
 This repository provides **unofficial preview builds** of [LocalSend](https://localsend.org/), maintained by **OB_BUFF**.  
 It is **not affiliated with the official LocalSend project**.
 
+You can browse and download builds from:  
+👉 **[localsend.ob-buff.dev](https://localsend.ob-buff.dev)**
+
 ---
 
 ## 🧩 Overview
@@ -26,7 +29,7 @@ The purpose is to make the project buildable in my environment and to fix issues
 
 ## ⚙️ Build Source Transparency
 
-All binaries are reproducibly built from the source snapshot shown in **[LocalSendBuildSrc](https://localsend.ob-buff.dev/source)**.  
+All binaries are reproducibly built from the source snapshot shown in **[LocalSendBuildSrc](https://github.com/Felix3322/LocalSendBuildsSrc)**.  
 That folder includes:
 - The **exact commit hash** used for the build  
 - My **packaging modifications**, especially for dependency management and MSIX integration  
@@ -37,7 +40,7 @@ That folder includes:
 ## 💡 Installation Notes
 
 - **Windows:** Enable Developer Mode to install unsigned `.msix` packages.  
-- **Android:** good luck
+- **Android:** good luck  
 - **Verification:** Compare SHA-256 checksums with `versions.json` before installation.
 
 ---
@@ -52,4 +55,5 @@ For official releases, please visit the [LocalSend GitHub repository](https://gi
 ---
 
 **Maintained by:** [OB_BUFF](https://ob-buff.dev)  
-**Contact:** contact@ob-buff.dev
+**Unofficial builds:** [localsend.ob-buff.dev](https://localsend.ob-buff.dev)  
+**Contact:** GitHub Issues
