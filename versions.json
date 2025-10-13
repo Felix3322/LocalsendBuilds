@@ -7,4 +7,12 @@
     "signed": null,
     "signed_warning": false
   }
+  {
+    "commit": "39b467ba180d6d5c2954a9d70babf64922348b07",
+    "push_date": "Tien Do Nam <dev.tien.donam@gmail.com>，2025/10/12 20:09 NONE GPG Sign",
+    "changelog": "ci: remove openssl",
+    "unsigned": "https://localsend.ob-buff.dev/downloads/localsend_app_1.msix",
+    "signed": null,
+    "signed_warning": false
+  }
 ]
