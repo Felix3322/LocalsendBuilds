@@ -284,13 +284,19 @@ footer:hover { opacity: 1; }
 
 <section class="section powershell-install">
   <div class="note">
-    <h2>⚙️ Install Unsigned Package via PowerShell</h2>
+    <h2>⚙️ Install MSIX via PowerShell (Fix 0x800B010A)</h2>
     <ul class="install-step">
-      <li>Right-click the downloaded <code>.msix</code> file → choose <strong>Copy as path</strong>.</li>
-      <li>Press <kbd>Win</kbd> + <kbd>X</kbd> → open <strong>Windows PowerShell (Admin)</strong>.</li>
-      <li>In the PowerShell window, paste and run:
-        <pre><code>Add-AppxPackage -Path "C:\Users\***\Downloads\localsend_app_0.msix" -AllowUnsigned</code></pre>
+      <li>Download the <code>.msix</code> file, then right-click it → <strong>Copy as path</strong>.</li>
+      <li>Open <strong>PowerShell</strong> (normal user is usually enough, Admin only if policy requires).</li>
+      <li>Paste and run this script (replace the path):<pre><code>$msix = "C:\Users\***\Downloads\localsend_app_0.msix"
+$sig  = Get-AuthenticodeSignature -FilePath $msix
+if ($sig.Status -ne 'Valid' -or -not $sig.SignerCertificate) { throw "Cannot read signing certificate from MSIX." }
+$cer = Join-Path $env:TEMP "localsend_msix_signer.cer"
+Export-Certificate -Cert $sig.SignerCertificate -FilePath $cer | Out-Null
+Import-Certificate -FilePath $cer -CertStoreLocation "Cert:\CurrentUser\TrustedPeople" | Out-Null
+Add-AppxPackage -Path $msix</code></pre>
       </li>
+      <li>If you still get <code>0x800B010A</code>, also import the cert to <code>Cert:\CurrentUser\Root</code> and retry.</li>
       <li>If you see a policy error, enable sideloading in
         <code>Settings → Privacy & Security → For Developers → Sideload apps</code>.
       </li>
@@ -303,8 +309,8 @@ footer:hover { opacity: 1; }
   <div class="note">
     💡 <strong>About these builds</strong><br>
     This site provides <strong>community-maintained preview builds</strong> of LocalSend, compiled by OB_BUFF.<br><br>
-    🪟 <strong>Windows:</strong> Available as unsigned and self-signed MSIX packages.<br>
-    ⚠️ <em>SmartScreen or antivirus warnings may appear — always verify file hashes before installation.</em>
+    🪟 <strong>Windows:</strong> Preview packages are signed with a community/non-public-trust certificate.<br>
+    ⚠️ <em>SmartScreen or certificate-chain warnings may appear — verify file hashes and certificate details before installation.</em>
   </div>
 
   <!-- 🧠 Source Transparency Section -->
@@ -357,7 +363,7 @@ function renderVersionBlock(v) {
       ${v.unsigned ? `<a class='download-btn' href='${v.unsigned}' target='_blank'>🪟 MSIX (Unsigned)</a>` : `<span style='color:#7d8590;'>No unsigned build</span>`}
       ${v.signed ? `<a class='download-btn' style='background:var(--warn);color:#222;' href='${v.signed}' target='_blank'>🔏 MSIX (Signed)</a>` : `<span style='color:#7d8590;'>No signed build</span>`}
     </div>
-    <div class='warning'>⚠️ ${v.signed_warning ? '<strong>Signed with a temporary or leaked certificate</strong>' : 'Unsigned or unverified'} — may trigger SmartScreen warnings.</div>
+    <div class='warning'>⚠️ ${v.signed_warning ? '<strong>Signed with a non-public-trust certificate</strong>' : 'Package signature may not chain to a public trusted root'} — this can trigger 0x800B010A / SmartScreen warnings.</div>
   </div>`;
 }
 
