@@ -1,0 +1,36 @@
+[
+  {
+    "tag": "legacy-39b467ba180d",
+    "version": null,
+    "source_commit": "39b467ba180d6d5c2954a9d70babf64922348b07",
+    "created_at": "2025-10-12",
+    "message": "ci: remove openssl",
+    "assets": [
+      {
+        "platform": "Windows",
+        "format": "MSIX",
+        "arch": "x86_64",
+        "url": "downloads/localsend_app_1.msix",
+        "size": null,
+        "signed": false
+      }
+    ]
+  },
+  {
+    "tag": "legacy-86adfd67afef",
+    "version": null,
+    "source_commit": "86adfd67afef5fd79b8f4cedc395ffa886c4e939",
+    "created_at": "2025-10-05",
+    "message": "chore: migrate GitHub Actions runners from ubuntu-20 to ubuntu-24 (#2743)",
+    "assets": [
+      {
+        "platform": "Windows",
+        "format": "MSIX",
+        "arch": "x86_64",
+        "url": "downloads/localsend_app_0.msix",
+        "size": null,
+        "signed": false
+      }
+    ]
+  }
+]
