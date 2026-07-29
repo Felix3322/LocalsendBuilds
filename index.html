@@ -663,7 +663,7 @@
       });
     });
 
-    fetch("builds.json", { cache: "no-store" })
+    fetch(`builds.json?build=${Date.now()}`, { cache: "no-store" })
       .then(response => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return response.json();
