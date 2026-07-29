@@ -1,5 +1,79 @@
 [
   {
+    "tag": "preview-main-27d8e62-30422864223",
+    "version": "1.17.0",
+    "source_commit": "27d8e62f19eec2f64d1a1e10062bf396d0a15cfa",
+    "created_at": "2026-07-29T04:59:57+00:00",
+    "message": "Automated preview build. Android APKs use a temporary CI signing key.",
+    "build_url": "https://github.com/Felix3322/LocalSendBuildsSrc/actions/runs/30422864223",
+    "assets": [
+      {
+        "platform": "Android",
+        "format": "APK",
+        "arch": "armeabi-v7a",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-android-arm32v7.apk",
+        "size": 39288975,
+        "signed": null
+      },
+      {
+        "platform": "Android",
+        "format": "APK",
+        "arch": "arm64-v8a",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-android-arm64v8.apk",
+        "size": 46140225,
+        "signed": null
+      },
+      {
+        "platform": "Android",
+        "format": "APK",
+        "arch": "x86_64",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-android-x86_64.apk",
+        "size": 48389238,
+        "signed": null
+      },
+      {
+        "platform": "Linux",
+        "format": "AppImage",
+        "arch": "x86_64",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-linux-x86_64.AppImage",
+        "size": 66106560,
+        "signed": null
+      },
+      {
+        "platform": "Linux",
+        "format": "DEB",
+        "arch": "x86_64",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-linux-x86_64.deb",
+        "size": 24210908,
+        "signed": null
+      },
+      {
+        "platform": "Linux",
+        "format": "tar.gz",
+        "arch": "x86_64",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-linux-x86_64.tar.gz",
+        "size": 31552332,
+        "signed": null
+      },
+      {
+        "platform": "Windows",
+        "format": "MSIX",
+        "arch": "x86_64",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-windows-x86_64-unsigned.msix",
+        "size": 27239013,
+        "signed": false
+      },
+      {
+        "platform": "Windows",
+        "format": "Portable ZIP",
+        "arch": "x86_64",
+        "url": "releases/preview-main-27d8e62-30422864223/LocalSend-1.17.0-windows-x86_64.zip",
+        "size": 25537162,
+        "signed": null
+      }
+    ]
+  },
+  {
     "tag": "legacy-39b467ba180d",
     "version": null,
     "source_commit": "39b467ba180d6d5c2954a9d70babf64922348b07",
