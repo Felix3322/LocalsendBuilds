@@ -1,5 +1,79 @@
 [
   {
+    "tag": "preview-main-a7ac715-40179585812",
+    "version": "1.18.2",
+    "source_commit": "a7ac7156e14af8c56d764a3a4ccdd33c3ad8e109",
+    "created_at": "2026-10-25T09:27:35+00:00",
+    "message": "Automated preview build. Android APKs use a temporary CI signing key.",
+    "build_url": "https://github.com/Felix3322/LocalSendBuildsSrc/actions/runs/40179585812",
+    "assets": [
+      {
+        "platform": "Android",
+        "format": "APK",
+        "arch": "armeabi-v7a",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-android-arm32v7.apk",
+        "size": 39207491,
+        "signed": null
+      },
+      {
+        "platform": "Android",
+        "format": "APK",
+        "arch": "arm64-v8a",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-android-arm64v8.apk",
+        "size": 46330209,
+        "signed": null
+      },
+      {
+        "platform": "Android",
+        "format": "APK",
+        "arch": "x86_64",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-android-x86_64.apk",
+        "size": 48678778,
+        "signed": null
+      },
+      {
+        "platform": "Linux",
+        "format": "AppImage",
+        "arch": "x86_64",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-linux-x86_64.AppImage",
+        "size": 66344128,
+        "signed": null
+      },
+      {
+        "platform": "Linux",
+        "format": "DEB",
+        "arch": "x86_64",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-linux-x86_64.deb",
+        "size": 24384496,
+        "signed": null
+      },
+      {
+        "platform": "Linux",
+        "format": "tar.gz",
+        "arch": "x86_64",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-linux-x86_64.tar.gz",
+        "size": 31867860,
+        "signed": null
+      },
+      {
+        "platform": "Windows",
+        "format": "MSIX",
+        "arch": "x86_64",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-windows-x86_64-unsigned.msix",
+        "size": 27511629,
+        "signed": false
+      },
+      {
+        "platform": "Windows",
+        "format": "Portable ZIP",
+        "arch": "x86_64",
+        "url": "https://github.com/Felix3322/LocalSendBuildsSrc/releases/download/preview-main-a7ac715-40179585812/LocalSend-1.18.2-windows-x86_64.zip",
+        "size": 25796480,
+        "signed": null
+      }
+    ]
+  },
+  {
     "tag": "preview-main-0637300-39755424220",
     "version": "1.18.2",
     "source_commit": "06373000286f746b8be51c27960324b2bd9b2389",
